@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question.9</title>
+  </head>
+  <body>
+    <h3>For Answer see in console</h3>
+    <script>
+      function reverseStack(stack) {
+        if (stack.length === 0) {
+          return stack;
+        }
+        const poppedElement = stack.pop();
+        reverseStack(stack);
+        insertAtBottom(stack, poppedElement);
+      }
+      function insertAtBottom(stack, element) {
+        if (stack.length === 0) {
+          stack.push(element);
+        } else {
+          const poppedElement = stack.pop();
+          insertAtBottom(stack, element);
+          stack.push(poppedElement);
+        }
+      }
+      const stack = [];
+      const input = prompt("Enter elements of the stack separated by commas:");
+      const elements = input.split(",").map((str) => parseInt(str.trim()));
+      elements.forEach((element) => stack.push(element));
+      reverseStack(stack);
+      console.log(stack);
+    </script>
+  </body>
+</html>
